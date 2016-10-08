@@ -1,12 +1,17 @@
 from flask import Flask, g, request, jsonify
 from flaskext.mysql import MySQL
 
+import ConfigParser
+Config = ConfigParser.ConfigParser()
+Config.read('config.ini')
+
 app = Flask(__name__)
 app.config.from_object(__name__)
 
 app.config.update(dict(
-	MYSQL_DATABASE_USER='root',
-	MYSQL_DATABASE_DB='dxmp'
+	MYSQL_DATABASE_DB=Config.get('MySQL', 'Database'),
+	MYSQL_DATABASE_USER=Config.get('MySQL', 'User'),
+	MYSQL_DATABASE_PASSWORD=Config.get('MySQL', 'Password')
 ))
 
 mysql = MySQL()
