@@ -5,7 +5,7 @@ from hydration_info import SONGS_SCHEMA, ALBUMS_SCHEMA
 
 content_api = Blueprint('api', __name__)
 
-@content_api.route('/content/songs')
+@content_api.route('/api/content/songs')
 @uses_db
 def get_songs(db):
 	"""
@@ -20,7 +20,7 @@ def get_songs(db):
 	)
 	return jsonify(entries)
 
-@content_api.route("/content/albums")
+@content_api.route("/api/content/albums")
 @uses_db
 def get_albums(db):
 	"""
